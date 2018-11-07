@@ -20,7 +20,6 @@ class MyComponent extends Component {
 
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         value: state.value,
         moreValue: state.moreValue
