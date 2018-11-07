@@ -1,8 +1,12 @@
-export default function aReducer(state = 0, action) {
+export default function aReducer(value = "", action) {
     switch (action.type) {
-        case 'setSomething':
-            return action.value;
+        case 'setValue':
+            return action.data;
         default:
-            return state;
+            return value;
     }
+}
+
+export function setValue(data) {
+    return {type: "setValue", data};
 }
