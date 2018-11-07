@@ -16,6 +16,16 @@ function aMoreReducer(moreValue = "", action) {
     }
 }
 
+function ipReducer(value = "", action) {
+    switch (action.type) {
+        case 'setIp':
+            return action.data.ip;
+        default:
+            return value;
+    }
+}
+
+
 export function setValue(data) {
     return {type: "setValue", data};
 }
@@ -24,8 +34,13 @@ export function setMoreValue(data) {
     return {type: "setMoreValue", data};
 }
 
+export function setIp(data) {
+    return {type: "setIp", data};
+}
+
 export const combo = {
     value: aReducer,
-    moreValue: aMoreReducer
+    moreValue: aMoreReducer,
+    ip: ipReducer
 };
 
