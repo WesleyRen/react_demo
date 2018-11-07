@@ -9,3 +9,9 @@ npm start
 npm install redux --save
 
 npm install react-redux --save
+
+#### add redux logger
+npm install redux-logger --save
+
+#### add redux thunk
+npm install redux-thunk --save
