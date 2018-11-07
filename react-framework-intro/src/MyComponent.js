@@ -1,24 +1,30 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
+import {setValue} from "./reducers/MyReducer";
 
-export default class MyComponent extends Component {
-    state = {
-        value: ""
-    };
-
+class MyComponent extends Component {
     render() {
         return (
             <p>
-                Value: {this.state.value}
+                Value: {this.props.value}
                 <br/>
-                <input onChange={(event) => this.handleChange(event.target.value)}/>
+                <input onChange={(event) => this.props.setValue(event.target.value)}/>
             </p>
         )
     }
+}
 
-    handleChange(data) {
-        console.log(data);
-        this.setState({
-            value: data,
-        });
+
+function stateMapper(state, props) {
+    return {
+        value: state.value
     }
 }
+
+function actionMapper(dispatch, props) {
+    return {
+        setValue: (data) => dispatch(setValue(data))
+    }
+}
+
+export default connect(stateMapper, actionMapper)(MyComponent);
