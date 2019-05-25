@@ -1,28 +1,29 @@
-import React, { Component } from "react";
-import {connect} from "react-redux";
-import {setValue, setMoreValue} from "./reducers/MyReducer";
-import {aThunk} from "./reducers/MyThunk";
+import React from 'react';
+import { connect } from 'react-redux';
+import { setMoreValue, setValue } from './reducers/MyReducer';
+import { aThunk } from './reducers/MyThunk';
 
-class MyComponent extends Component {
-    render() {
-        let url = "https://api.ipify.org?format=json";
+function MyComponent(props) {
+    const url = 'https://api.ipify.org?format=json';
+    const {
+        value, moreValue, ip, fetch, localSetValue, localSetMoreValue
+    } = props;
 
-        return (
-            <div>
-                Value: {this.props.value}
-                <br/>
-                <input onChange={(event) => this.props.setValue(event.target.value)}/>
-                <hr/>
-                More Value: {this.props.moreValue}
-                <br/>
-                <input onChange={(event) => this.props.setMoreValue(event.target.value)}/>
-                <hr/>
-                My IP: {this.props.ip}
-                <br/>
-                <button onClick={() => this.props.fetch(url)}>get my ip thunk</button>
-            </div>
-        );
-    }
+    return (
+        <div>
+            Value: {value}
+            <br />
+            <input onChange={event => localSetValue(event.target.value)} />
+            <hr />
+            More Value: {moreValue}
+            <br />
+            <input onChange={event => localSetMoreValue(event.target.value)} />
+            <hr />
+            My IP: {ip}
+            <br />
+            <button type='submit' onClick={() => fetch(url)}>get my ip thunk</button>
+        </div>
+    );
 }
 
 
@@ -31,15 +32,15 @@ function mapStateToProps(state) {
         value: state.value,
         moreValue: state.moreValue,
         ip: state.ip
-    }
+    };
 }
 
 function mapActionToProps(dispatch) {
     return {
-        setValue: (data) => dispatch(setValue(data)),
-        setMoreValue: (data) => dispatch(setMoreValue(data)),
-        fetch: (url) => dispatch(aThunk(url))
-    }
+        localSetValue: (data) => dispatch(setValue(data)),
+        localSetMoreValue: (data) => dispatch(setMoreValue(data)),
+        fetch: url => dispatch(aThunk(url))
+    };
 }
 
 export default connect(mapStateToProps, mapActionToProps)(MyComponent);
