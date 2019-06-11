@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "object-path": "^0.11.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-redux": "^5.1.1",
@@ -25,9 +26,10 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "onchange": "^5.2.0",
     "@typescript-eslint/parser": "^1.9.0",
     "babel-eslint": "^10.0.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-google": "^0.12.0",
@@ -37,6 +39,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "jest-mock-console": "^0.4.2",
+    "onchange": "^5.2.0",
     "react-hooks-testing-library": "^0.5.0",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.1"

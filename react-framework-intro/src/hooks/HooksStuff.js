@@ -20,8 +20,8 @@ export function useFetcher(initValue, url, rejectMsg) {
             default:
                 return Promise.reject(rejectMsg);
             }
-        }).then((values) => {
-            setVarValue({ value: values, loading: false });
+        }).then((value) => {
+            setVarValue({ value: value.results, loading: false });
         }).catch((error) => {
             setVarValue({ value: initValue, loading: false });
             console.log(error);
@@ -58,7 +58,7 @@ export function useInput(initialValue) {
 
 export function UseFetcherDemo() {
     const urlInput = useInput('https://randomuser.me/api/?results=5');
-    const fetchInput = useFetcher([], urlInput.url, 'some error');
+    const fetchResult = useFetcher([], urlInput.url, 'some error');
 
     return (
         <Fragment>
@@ -68,10 +68,10 @@ export function UseFetcherDemo() {
             </label>
             <br />
             {
-                fetchInput.loading ? <div>loading...</div>
+                fetchResult.loading ? <div>loading...</div>
                     : (
                         <ul>
-                            {fetchInput.value.results.map(item => <li key={item.email}>{item.email}</li>)}
+                            {fetchResult.value.map(item => <li key={item.email}>{item.email}</li>)}
                         </ul>
                     )
             }
