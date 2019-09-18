@@ -6,7 +6,7 @@ export const RefreshButton: React.FC = () => {
 
     return <Fragment>
         <h4>Hooks based store in plain Typescript</h4>
-        <button onClick={() => actions.setToRefresh(!state.toRefresh)}>
+        <button onClick={() => actions.setRefreshTrigger(state.refreshTrigger + 1)}>
             Refresh
         </button>
     </Fragment>

@@ -16,12 +16,12 @@ const useActions = (state: {}, dispatch: (input: actionProp) => void) => {
     function setUserList(payload: FetchState) {
         dispatch({ type: types.SET_USER_LIST, payload });
     }
-    function setToRefresh(payload: boolean) {
-        dispatch({ type: types.SET_TO_REFRESH, payload });
+    function setRefreshTrigger(payload: number) {
+        dispatch({ type: types.SET_REFRESH_TRIGGER, payload });
     }
     return {
         setUserList,
-        setToRefresh
+        setRefreshTrigger
     };
 };
 

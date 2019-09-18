@@ -3,16 +3,16 @@ import {actionProp, FetchState} from "./actions";
 
 export type ReducerState = {
     userList: FetchState,
-    toRefresh: boolean
+    refreshTrigger: number
 };
 
 const initialState: Readonly<ReducerState> = {
     userList: { status: "empty" },
-    toRefresh: false,
+    refreshTrigger: 0,
 };
 const types = {
     SET_USER_LIST: 'SET_USER_LIST',
-    SET_TO_REFRESH: 'SET_TO_REFRESH'
+    SET_REFRESH_TRIGGER: 'SET_REFRESH_TRIGGER'
 };
 const reducer: React.Reducer<ReducerState, actionProp> = (state, action) => {
     switch (action.type) {
@@ -21,10 +21,10 @@ const reducer: React.Reducer<ReducerState, actionProp> = (state, action) => {
                 ...state,
                 userList: action.payload
             };
-        case types.SET_TO_REFRESH:
+        case types.SET_REFRESH_TRIGGER:
             return {
                 ...state,
-                toRefresh: action.payload
+                refreshTrigger: action.payload
             };
         default:
             throw new Error('Unexpected action');

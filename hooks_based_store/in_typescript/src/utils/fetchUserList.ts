@@ -28,5 +28,5 @@ export function useFetchUserListEffect() {
                 actions.setUserList({ status: "failed", error: error });
             });
 
-    }, [state.toRefresh]);
+    }, [state.refreshTrigger]);
 }
