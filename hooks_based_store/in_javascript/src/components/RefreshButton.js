@@ -6,7 +6,7 @@ export function RefreshButton() {
 
     return <Fragment>
         <h4>Hooks based store in plain Javascript</h4>
-        <button onClick={() => actions.setToRefresh(!state.toRefresh)}>
+        <button onClick={() => actions.setRefreshTrigger(state.refreshTrigger + 1)}>
             Refresh
         </button>
     </Fragment>

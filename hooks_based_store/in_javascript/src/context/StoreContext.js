@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useRef, useReducer } from 'react';
 import { initialState, reducer } from './reducers';
 import useActions from './actions';
 
-const StoreContext = createContext(initialState);
+const StoreContext = createContext(null);
 
 function useLogger([state, dispatch]) {
     const actionRef = useRef(null);
