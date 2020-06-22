@@ -53,8 +53,8 @@ export function useInput(initialValue) {
 }
 
 
-export function UseFetcherDemo() {
-    let urlInput = useInput("https://randomuser.me/api/?results=100");
+export function UseFetcherDemo(props) {
+    let urlInput = useInput("https://randomuser.me/api/?results=" + props.children);
     let fetchInput = useFetcher([], urlInput.url, "some error");
 
     return <Fragment>

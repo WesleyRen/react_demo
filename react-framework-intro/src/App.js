@@ -11,7 +11,7 @@ class App extends Component {
                 <h2>Redux stuff</h2>
                 <MyComponent/>
                 <h2>Hooks stuff</h2>
-                <UseFetcherDemo/>
+                <UseFetcherDemo>10</UseFetcherDemo>
                 <h2>Code Snippets</h2>
                 <JsxDemo.returnOfAListAndCallBackPropChildren/>
             </div>
