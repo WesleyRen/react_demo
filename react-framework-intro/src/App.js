@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MyComponent from "./MyComponent";
 import {UseFetcherDemo} from "./hooks/HooksStuff";
+import JsxDemo from "./code-snippets/JsxDemo";
 
 class App extends Component {
 
@@ -11,6 +12,8 @@ class App extends Component {
                 <MyComponent/>
                 <h2>Hooks stuff</h2>
                 <UseFetcherDemo/>
+                <h2>Code Snippets</h2>
+                <JsxDemo.returnOfAListAndCallBackPropChildren/>
             </div>
         );
     }
