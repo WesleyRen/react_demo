@@ -1,16 +1,16 @@
 import React from "react";
 
-export const numColors = 100;
-
 export const rowHeight = 30;
+
+const paddingTop = 5;
 
 export function RowAtIndex(index) {
     return (
         <div
             style={{
-                height: rowHeight,
-                color: getRandomColor(),
-                padding: "5px 10px",
+                height: rowHeight - (2 * paddingTop),
+                color: toColor(index),
+                padding: paddingTop + "px 10px",
                 fontSize: 24
             }}
         >
@@ -26,4 +26,12 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function toColor(num) {
+    const d1 = num % 10;
+    const d2 = Math.floor(num / 10) % 10;
+    const d3 = Math.floor(num / 100) % 10;
+    let result = "rgb(" + [d1 * 25, d2 * 25, d3 * 25].join(",") + ")";
+    return result;
 }

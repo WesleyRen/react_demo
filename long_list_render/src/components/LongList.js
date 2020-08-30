@@ -9,7 +9,7 @@ export function LongList({numRows, rowHeight, renderRow}) {
 
     useEffect(() => {
         setAvailableHeight(divRef.current.clientHeight);
-    }, [divRef]);
+    });
 
     const handleScroll = (event) => {
         setScrollTop(event.target.scrollTop);
@@ -24,25 +24,27 @@ export function LongList({numRows, rowHeight, renderRow}) {
 
     let index = startIndex;
     while (index < endIndex) {
-        items.push(<li key={index}>{renderRow(index)}</li>);
+        items.push(<li key={startIndex + index}>{renderRow(index)}</li>);
         index++;
     }
-    console.log("availableHeight", availableHeight, "scrollTop", scrollTop, "totalHeight", totalHeight);
-    console.log("node.current", divRef.current);
+    console.log("totalHeight", totalHeight, "startIndex * rowHeight", startIndex * rowHeight);
 
     return (
-        <div
-            onScroll={handleScroll}
-            style={{ height: "100vh", overflowY: "scroll" }}
-            ref={divRef}
-        >
+        <div>
+            Here's a long list:
             <div
-                style={{
-                    height: totalHeight,
-                    paddingTop: startIndex * rowHeight
-                }}
+                onScroll={handleScroll}
+                style={{ height: "90vh", overflowY: "scroll", border: "solid" }}
+                ref={divRef}
             >
-                <ol>{items}</ol>
+                <div
+                    style={{
+                        height: totalHeight,
+                        paddingTop: startIndex * rowHeight
+                    }}
+                >
+                    <ul>{items}</ul>
+                </div>
             </div>
         </div>
     );
