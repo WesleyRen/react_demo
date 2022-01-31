@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './style.css';
 
 export function LongList({numRows, rowHeight, renderRow}) {
     const [availableHeight, setAvailableHeight] = useState(0);
