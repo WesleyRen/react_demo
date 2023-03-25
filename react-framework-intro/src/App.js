@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MyComponent from "./MyComponent";
 import {UseFetcherDemo} from "./hooks/HooksStuff";
 import JsxDemo from "./code-snippets/JsxDemo";
+import Form from "./code-snippets/ForwardRef";
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
                 <UseFetcherDemo>10</UseFetcherDemo>
                 <h2>Code Snippets</h2>
                 <JsxDemo.returnOfAListAndCallBackPropChildren/>
+                <Form/>
             </div>
         );
     }
