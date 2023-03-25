@@ -3,6 +3,7 @@ import MyComponent from "./MyComponent";
 import {UseFetcherDemo} from "./hooks/HooksStuff";
 import JsxDemo from "./code-snippets/JsxDemo";
 import Form from "./code-snippets/ForwardRef";
+import PortalDemo from "./code-snippets/portal";
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
                 <h2>Code Snippets</h2>
                 <JsxDemo.returnOfAListAndCallBackPropChildren/>
                 <Form/>
+                <PortalDemo/>
             </div>
         );
     }
