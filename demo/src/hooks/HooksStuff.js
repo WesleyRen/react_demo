@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 
-export function useFetcher(initValue, url, rejectMsg) {
-    const [varValue, setVarValue] = useState({value: initValue, loading: true});
+export function useFetcher(url, rejectMsg) {
+    const [varValue, setVarValue] = useState({value: [], loading: true});
 
     useEffect(() => {
         if (!url || !url.startsWith("http")) {
@@ -23,10 +23,10 @@ export function useFetcher(initValue, url, rejectMsg) {
         }).then(values => {
             setVarValue({value: values, loading: false});
         }).catch(error => {
-            setVarValue({value: initValue, loading: false});
+            setVarValue({value: [], loading: false});
             console.log(error);
         });
-    }, [url, initValue, rejectMsg]);
+    }, [url, rejectMsg]);
 
     return varValue;
 }
@@ -55,7 +55,7 @@ export function useInput(initialValue) {
 
 export function UseFetcherDemo(props) {
     let urlInput = useInput("https://randomuser.me/api/?results=" + props.count);
-    let fetchInput = useFetcher([], urlInput.url, "some error");
+    let fetchInput = useFetcher(urlInput.url, "some error");
 
     return <Fragment>
         <label>Url input: {urlInput.value}</label>

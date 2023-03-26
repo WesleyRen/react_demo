@@ -1,6 +1,6 @@
 import React from "react";
 import MyComponent from "./MyComponent";
-// import {UseFetcherDemo} from "./hooks/HooksStuff";
+import {UseFetcherDemo} from "./hooks/HooksStuff";
 import ReturnOfAListAndCallBackPropChildren from "./code-snippets/JsxDemo";
 import Form from "./code-snippets/ForwardRef";
 import PortalDemo from "./code-snippets/portal";
@@ -16,7 +16,7 @@ function App() {
           <MyComponent/>
           <h2>Hooks stuff</h2>
           {/* TODO: there is a bug causes a rendering loop in UseFetcherDemo. Fix it.*/}
-          {/* <UseFetcherDemo count={10}/> */}
+          <UseFetcherDemo count={10}/>
           <h2>Code Snippets</h2>
           <ReturnOfAListAndCallBackPropChildren/>
           <Form/>
