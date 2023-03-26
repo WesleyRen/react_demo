@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOMClient from 'react-dom/client';
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import {logger} from "redux-logger";
@@ -10,7 +10,13 @@ import reportWebVitals from './reportWebVitals';
 
 const store = createStore(combineReducers(combo), applyMiddleware(thunk, logger));
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("root"));
+const container: HTMLElement = document.getElementById('root')!;
+
+// Create a root.
+const root = ReactDOMClient.createRoot(container);
+
+// Initial render: Render an element to the root.
+root.render(<Provider store={store}><App /></Provider>);
 
 
 // If you want to start measuring performance in your app, pass a function
