@@ -10,7 +10,7 @@ function Repeat(props) {
     return items;
 }
 
-function ListOfTenThings() {
+function ReturnOfAListAndCallBackPropChildren() {
     return (
         <Repeat numTimes={10}>
             {(index) => <div key={index}>This is item {index} in the list</div>}
@@ -18,8 +18,4 @@ function ListOfTenThings() {
     );
 }
 
-const JsxDemo = {
-    returnOfAListAndCallBackPropChildren: ListOfTenThings
-}
-
-export default JsxDemo;
+export default ReturnOfAListAndCallBackPropChildren;

@@ -26,7 +26,7 @@ export function useFetcher(initValue, url, rejectMsg) {
             setVarValue({value: initValue, loading: false});
             console.log(error);
         });
-    }, [url]);
+    }, [url, initValue, rejectMsg]);
 
     return varValue;
 }
@@ -54,7 +54,7 @@ export function useInput(initialValue) {
 
 
 export function UseFetcherDemo(props) {
-    let urlInput = useInput("https://randomuser.me/api/?results=" + props.children);
+    let urlInput = useInput("https://randomuser.me/api/?results=" + props.count);
     let fetchInput = useFetcher([], urlInput.url, "some error");
 
     return <Fragment>
