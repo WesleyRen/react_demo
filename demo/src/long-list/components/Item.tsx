@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import React, { FC, ReactNode } from 'react'
 
 const Wrapper = styled.li`
-  width: 100%;  
   height: 30px;
   border-bottom: 1px solid black;
   padding-left: 8px;
