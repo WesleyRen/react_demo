@@ -12,9 +12,12 @@ function Repeat(props) {
 
 function ReturnOfAListAndCallBackPropChildren() {
     return (
-        <Repeat numTimes={10}>
-            {(index) => <div key={index}>This is item {index} in the list</div>}
-        </Repeat>
+        <>
+            <h2>Return Of A List And Call Back Prop Children</h2>
+            <Repeat numTimes={10}>
+                {(index) => <div key={index}>This is item {index} in the list</div>}
+            </Repeat>
+        </>
     );
 }
 

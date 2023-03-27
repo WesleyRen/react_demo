@@ -9,6 +9,7 @@ class MyComponent extends Component {
 
         return (
             <div>
+                <h2>misc. stuff</h2>
                 Value: {this.props.value}
                 <br/>
                 <input onChange={(event) => this.props.setValue(event.target.value)}/>

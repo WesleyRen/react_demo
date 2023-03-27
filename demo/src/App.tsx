@@ -26,10 +26,7 @@ function App() {
           
           <TabPanel tabIndex={0}>
             <MyComponent/>
-            <h2>Hooks stuff</h2>
-            {/* TODO: there is a bug causes a rendering loop in UseFetcherDemo. Fix it.*/}
             <UseFetcherDemo count={10}/>
-            <h2>Code Snippets</h2>
             <ReturnOfAListAndCallBackPropChildren/>
             <Form/>
             <PortalDemo/>

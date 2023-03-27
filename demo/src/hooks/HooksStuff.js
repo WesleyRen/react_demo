@@ -58,6 +58,7 @@ export function UseFetcherDemo(props) {
     let fetchInput = useFetcher(urlInput.url, "some error");
 
     return <Fragment>
+        <h2>useFetcher Demo</h2>
         <label>Url input: {urlInput.value}</label>
         <br/>
         <input size="50" {...urlInput}/>
