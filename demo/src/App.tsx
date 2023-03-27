@@ -6,6 +6,9 @@ import Form from "./code-snippets/ForwardRef";
 import PortalDemo from "./code-snippets/portal";
 import { List } from './long-list/components/List';
 import { useDictionary } from './long-list/hooks/useDictionary'
+import { Workspace } from "./file-tree/Workspace/Workspace";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
 
 function App() {
   const dictionary: string[] = useDictionary();
@@ -14,18 +17,34 @@ function App() {
 
   return (
       <div className="App">
-          <h2>Redux stuff</h2>
-          <MyComponent/>
-          <h2>Hooks stuff</h2>
-          {/* TODO: there is a bug causes a rendering loop in UseFetcherDemo. Fix it.*/}
-          <UseFetcherDemo count={10}/>
-          <h2>Code Snippets</h2>
-          <ReturnOfAListAndCallBackPropChildren/>
-          <Form/>
-          <PortalDemo/>
-          <h2>long list with search</h2>
-          <input placeholder="type regex to search" value={str} onChange={(e) => {setStr(e.target.value)}}/>
-          <List items={items} />
+        <Tabs>
+          <TabList>
+            <Tab>Redux stuff</Tab>
+            <Tab>long list with search</Tab>
+            <Tab>File Tree</Tab>
+          </TabList>
+          
+          <TabPanel tabIndex={0}>
+            <MyComponent/>
+            <h2>Hooks stuff</h2>
+            {/* TODO: there is a bug causes a rendering loop in UseFetcherDemo. Fix it.*/}
+            <UseFetcherDemo count={10}/>
+            <h2>Code Snippets</h2>
+            <ReturnOfAListAndCallBackPropChildren/>
+            <Form/>
+            <PortalDemo/>
+          </TabPanel>
+          
+          <TabPanel>
+            <input placeholder="type regex to search" value={str} onChange={(e) => {setStr(e.target.value)}}/>
+            <List items={items} />
+          </TabPanel>
+          
+          <TabPanel>
+            <Workspace />
+          </TabPanel>
+         
+        </Tabs>
       </div>
   );
     
