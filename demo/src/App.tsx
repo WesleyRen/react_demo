@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import MyComponent from "./MyComponent";
 import {UseFetcherDemo} from "./hooks/HooksStuff";
 import ReturnOfAListAndCallBackPropChildren from "./code-snippets/JsxDemo";
@@ -8,7 +8,9 @@ import { List } from './long-list/components/List';
 import { useDictionary } from './long-list/hooks/useDictionary'
 
 function App() {
-  const dictionary = useDictionary();
+  const dictionary: string[] = useDictionary();
+  const [str, setStr] = useState<string>("");
+  const items = dictionary.filter(w => w.match(str));
 
   return (
       <div className="App">
@@ -21,7 +23,9 @@ function App() {
           <ReturnOfAListAndCallBackPropChildren/>
           <Form/>
           <PortalDemo/>
-          <List items={dictionary} />
+          <h2>long list with search</h2>
+          <input placeholder="type regex to search" value={str} onChange={(e) => {setStr(e.target.value)}}/>
+          <List items={items} />
       </div>
   );
     

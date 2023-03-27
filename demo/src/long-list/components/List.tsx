@@ -35,7 +35,7 @@ export const List: FC<ListProps> = ({ items }) => {
 
   const itemsStartIdx = Math.floor(scrollTop / itemHeight);
   const topBoxHeight = itemsStartIdx * itemHeight;
-  const itemsEndIdx = Math.min(items.length - 1, itemsStartIdx + Math.ceil(visibleHeight / itemHeight) + 1);
+  const itemsEndIdx = Math.min(items.length, itemsStartIdx + Math.ceil(visibleHeight / itemHeight) + 1);
   const middleBoxHeight = (itemsEndIdx - itemsStartIdx) * itemHeight;
   const bottomBoxHeight = Math.max(0, totalHeight - topBoxHeight - middleBoxHeight);
   const itemsVisible = items.slice(itemsStartIdx, itemsEndIdx);
