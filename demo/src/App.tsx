@@ -17,7 +17,7 @@ function App() {
 
   return (
       <div className="App">
-        <Tabs>
+        <Tabs defaultIndex={2}>
           <TabList>
             <Tab>Redux stuff</Tab>
             <Tab>long list with search</Tab>
