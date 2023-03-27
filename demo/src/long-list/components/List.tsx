@@ -22,24 +22,30 @@ export interface ListProps {
 
 export const List: FC<ListProps> = ({ items }) => {
   const itemHeight = 30; // get it from 
-  const [scrollTop, setScrollTop] = useState(0);
+  const [itemsStartIdx, setItemStartIdx] = useState(0);
   const scrollRef = useRef(null);
 
+  // Not to use scrollTop as a state, since that will change with every scroll. We really only care about items showing.
+  // This can be further optimized by having some cushions on top and bottom, and we only update start index when we
+  // are out of the cushioned windows, so that local scrolls won't cause re-render.
   const handleScroll = (event: any) => {
-    setScrollTop((event?.target as HTMLElement).scrollTop);
+    const scrollTop = (event?.target as HTMLElement).scrollTop || 0;
+    const newItemStartIdx = Math.floor(scrollTop / itemHeight);
+    if (newItemStartIdx !== itemsStartIdx) {
+      setItemStartIdx(newItemStartIdx);
+    }
 }
 
 
   const visibleHeight = 500; // ScrollWrapper div height.
   const totalHeight = items.length * itemHeight;
 
-  const itemsStartIdx = Math.floor(scrollTop / itemHeight);
   const topBoxHeight = itemsStartIdx * itemHeight;
   const itemsEndIdx = Math.min(items.length, itemsStartIdx + Math.ceil(visibleHeight / itemHeight) + 1);
   const middleBoxHeight = (itemsEndIdx - itemsStartIdx) * itemHeight;
   const bottomBoxHeight = Math.max(0, totalHeight - topBoxHeight - middleBoxHeight);
   const itemsVisible = items.slice(itemsStartIdx, itemsEndIdx);
-  // console.log("last item: ", items[items.length - 1]); // funny, it's an empty string.
+  console.log("last item: ", items[items.length - 1]); // funny, it's an empty string.
 
   return (
     <ScrollWrapper ref={scrollRef} onScroll={handleScroll}>
