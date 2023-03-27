@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { FilePane } from '../FilePane/FilePane'
 import { Editor } from '../Editor/Editor'
 import { WorkspaceProvider } from './WorkspaceContext'

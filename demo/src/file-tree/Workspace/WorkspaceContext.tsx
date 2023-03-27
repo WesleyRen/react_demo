@@ -21,7 +21,7 @@ export const WorkspaceProvider: React.FC<{ files: File[], children: ReactNode }>
   const activeFile = useMemo(() => {
     const foundFile = files.find((f) => f.path === activeFilePath)
     return foundFile || files[0]
-  }, [activeFilePath])
+  }, [activeFilePath, files])
 
   const ctxVal: {
     activeFile: File | null,
