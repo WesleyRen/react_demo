@@ -1,4 +1,8 @@
 import React, {useState} from "react";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
+
+
 import MyComponent from "./MyComponent";
 import {UseFetcherDemo} from "./hooks/HooksStuff";
 import ReturnOfAListAndCallBackPropChildren from "./code-snippets/JsxDemo";
@@ -7,8 +11,7 @@ import PortalDemo from "./code-snippets/portal";
 import { List } from './long-list/components/List';
 import { useDictionary } from './long-list/hooks/useDictionary'
 import { Workspace } from "./file-tree/Workspace/Workspace";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
-import 'react-tabs/style/react-tabs.css';
+import Todo from "./todo/Todo";
 
 function App() {
   const dictionary: string[] = useDictionary();
@@ -22,6 +25,7 @@ function App() {
             <Tab>Snipets</Tab>
             <Tab>long list with search</Tab>
             <Tab>File Tree</Tab>
+            <Tab>Todo</Tab>
           </TabList>
           
           <TabPanel tabIndex={0}>
@@ -39,6 +43,10 @@ function App() {
           
           <TabPanel>
             <Workspace />
+          </TabPanel>
+
+          <TabPanel>
+            <Todo/>
           </TabPanel>
          
         </Tabs>
