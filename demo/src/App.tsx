@@ -19,7 +19,7 @@ function App() {
       <div className="App">
         <Tabs defaultIndex={2}>
           <TabList>
-            <Tab>Redux stuff</Tab>
+            <Tab>Snipets</Tab>
             <Tab>long list with search</Tab>
             <Tab>File Tree</Tab>
           </TabList>
