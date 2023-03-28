@@ -1,6 +1,4 @@
-import { JSONSchema4 } from 'json-schema';
 import files from './defaultFiles';
-
 
 export function getFileTreeJSon() {
     return files.map(f => f.path).reduce((fileTree: any, path: string) => {

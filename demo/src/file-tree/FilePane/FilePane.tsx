@@ -33,7 +33,7 @@ const FileTree = ({files, fileTree, path}: {files: File[], fileTree: any, path: 
   });
   return <span className="FileTree">
       {
-        keys.filter(k => fileTree[k]).map(k => <ul>
+        keys.filter(k => fileTree[k]).map(k => <ul key={k}>
           <li>{k}</li>
           <FileTree files={files} fileTree={fileTree[k]} path={path + k + "/"}/>
         </ul>)
@@ -42,7 +42,7 @@ const FileTree = ({files, fileTree, path}: {files: File[], fileTree: any, path: 
         keys.filter(k => !fileTree[k]).map(k => {
           const filePath = path + k;
           const file = files.find(f => f.path === filePath);
-          return <ul>
+          return <ul key={k}>
               <FileRow file={file!} name={k}/>
           </ul>
         })
