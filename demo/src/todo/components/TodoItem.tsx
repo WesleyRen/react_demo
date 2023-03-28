@@ -14,8 +14,8 @@ export const Wrapper = styled.label({
   cursor: "pointer",
 });
 
-const Label = styled.span<{ checked: boolean }>(({ checked }) => ({
-  textDecoration: checked ? "line-through" : "none",
+const Label = styled.span<{ completed: number | null }>(({ completed }) => ({
+  textDecoration: completed ? "line-through" : "none",
   fontSize: 20,
   margin: 0,
   display: "flex",
@@ -43,7 +43,7 @@ marginRight: 0
 export interface TodoItemProps {
   id: string;
   label: string;
-  checked?: boolean;
+  completed: number | null;
   onChange?: (id: string, checked: boolean) => void;
   onDelete?: (id: string) => void;
 }
@@ -51,7 +51,7 @@ export interface TodoItemProps {
 export const TodoItem: FC<TodoItemProps> = ({
   id,
   label,
-  checked = false,
+  completed = null,
   onChange = () => {},
   onDelete = () => {}
 }) => {
@@ -61,10 +61,10 @@ export const TodoItem: FC<TodoItemProps> = ({
       <Checkbox
         type="checkbox"
         id={id}
-        checked={checked}
+        checked={!!completed}
         onChange={(e) => onChange(id, e.target.checked)}
       />
-      <Label checked={checked}>
+      <Label completed={completed}>
         {label}
       </Label>
       { showDelete && <Delete onClick={() => onDelete(id)}>&times;</Delete> }

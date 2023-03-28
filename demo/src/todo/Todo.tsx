@@ -14,6 +14,8 @@ const Wrapper = styled.div({
   width: "100%",
 });
 
+const nowEpoch = Date.now();
+
 /**
 * This is the initial todo state.
 * Instead of loading this data on every reload,
@@ -25,17 +27,20 @@ const initialData: Todo[] = localStorage.getItem("todos") !== null ? JSON.parse(
   {
     id: uuid(),
     label: "Buy groceries",
-    checked: false,
+    created: nowEpoch,
+    completed: null
   },
   {
     id: uuid(),
     label: "Reboot computer",
-    checked: false,
+    created: nowEpoch,
+    completed: null
   },
   {
     id: uuid(),
     label: "Ace CoderPad interview",
-    checked: true,
+    created: nowEpoch,
+    completed: nowEpoch
   },
 ];
 
@@ -51,7 +56,8 @@ function Todo() {
       {
         id: uuid(),
         label,
-        checked: false,
+        created: Date.now(),
+        completed: null
       },
       ...prev,
     ]);
@@ -63,7 +69,7 @@ function Todo() {
       const newTodos = [...prev];
       newTodos.forEach(todo => {
         if (todo.id === id) {
-          todo.checked = checked;
+          todo.completed = checked ? Date.now() : null;
         }
       });
       return newTodos;

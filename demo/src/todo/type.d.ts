@@ -6,6 +6,7 @@ declare module "*.svg" {
   interface Todo {
     id: string;
     label: string;
-    checked: boolean;
+    created: number;
+    completed: number | null;
   }
   
