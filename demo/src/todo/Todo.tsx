@@ -44,8 +44,19 @@ const initialData: Todo[] = localStorage.getItem("todos") !== null ? JSON.parse(
   },
 ];
 
+function sortFunc(a: Todo, b: Todo) {
+  if (a.completed && !b.completed) {
+    return 1;
+  } else if (!a.completed && b.completed) {
+    return -1;
+  } else if (a.completed && b.completed) {
+    return a.completed > b.completed ? 1 : -1;
+  }
+  return a.created > b.created ? 1 : -1;
+}
 function Todo() {
-  const [todos, setTodos] = useState<Todo[]>(initialData);
+  const sortedList = initialData.sort(sortFunc);
+  const [todos, setTodos] = useState<Todo[]>(sortedList);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -60,7 +71,7 @@ function Todo() {
         completed: null
       },
       ...prev,
-    ]);
+    ].sort(sortFunc));
   }, []);
 
   const handleChange = useCallback((id: string, checked: boolean) => {
@@ -72,7 +83,7 @@ function Todo() {
           todo.completed = checked ? Date.now() : null;
         }
       });
-      return newTodos;
+      return newTodos.sort(sortFunc);
     })
   }, []);
 
