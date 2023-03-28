@@ -5,10 +5,11 @@ import { useWorkspaceContext } from '../../Workspace/WorkspaceContext'
 import { File } from '../../Workspace/WorkspaceContext'
 
 interface IFileRowProps {
-  file: File
+  file: File;
+  name: string;
 }
 
-export const FileRow = ({ file }: IFileRowProps) => {
+export const FileRow = ({ file, name }: IFileRowProps) => {
   const { activeFile, activateFile } = useWorkspaceContext()
 
   return (
@@ -19,6 +20,7 @@ export const FileRow = ({ file }: IFileRowProps) => {
       alignItems='center'
       key={file.path}
       px={1}
+      style={{paddingLeft: 0}}
       sx={{ 
         cursor: 'default',
         background: activeFile === file ? '#DADADA' : 'inherit',
@@ -31,7 +33,7 @@ export const FileRow = ({ file }: IFileRowProps) => {
       <Box width="1.5rem">
         <FileIcon fileName={file.path} />
       </Box>
-      <Typography variant='body2'>{file.path}</Typography>
+      <Typography variant='body2'>{name}</Typography>
     </Box>
   )
 }
