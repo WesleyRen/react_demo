@@ -8,8 +8,8 @@ import {UseFetcherDemo} from "./hooks/HooksStuff";
 import ReturnOfAListAndCallBackPropChildren from "./code-snippets/JsxDemo";
 import Form from "./code-snippets/ForwardRef";
 import PortalDemo from "./code-snippets/portal";
-import { List } from './long-list/components/List';
-import { useDictionary } from './long-list/hooks/useDictionary'
+import { List } from './long-list-by-boxing/components/List';
+import { useDictionary } from './long-list-by-boxing/hooks/useDictionary'
 import { Workspace } from "./file-tree/Workspace/Workspace";
 import Todo from "./todo/Todo";
 import { LongList } from "./long-list-by-padding/components/LongList";
@@ -25,8 +25,8 @@ function App() {
         <Tabs defaultIndex={2}>
           <TabList>
             <Tab>Snippets</Tab>
-            <Tab>long list windowing by boxing</Tab>
-            <Tab>long list windowing by padding</Tab>
+            <Tab>windowing by boxing</Tab>
+            <Tab>windowing by padding</Tab>
             <Tab>File Tree</Tab>
             <Tab>Todo</Tab>
           </TabList>
@@ -45,8 +45,10 @@ function App() {
           </TabPanel>
 
           <TabPanel>
-            // Interesting, it seems browser (Chrome) has a scroll top limit around 30,503,022.
-            // That causes anything greater 1016801 here not able to show.
+            {/* 
+              Interesting, it seems browser (Chrome) has a scroll top limit around 30,503,022.
+              That causes anything > 1016801 here not able to show.
+            */}
             <LongList {...{numRows: 1016801, rowHeight, renderRow: RowAtIndex}} />
           </TabPanel>
           
