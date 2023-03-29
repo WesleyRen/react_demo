@@ -12,6 +12,8 @@ import { List } from './long-list/components/List';
 import { useDictionary } from './long-list/hooks/useDictionary'
 import { Workspace } from "./file-tree/Workspace/Workspace";
 import Todo from "./todo/Todo";
+import { LongList } from "./long-list-by-padding/components/LongList";
+import { RowAtIndex, rowHeight } from "./long-list-by-padding/components/RowAtIndex";
 
 function App() {
   const dictionary: string[] = useDictionary();
@@ -22,8 +24,9 @@ function App() {
       <div className="App">
         <Tabs defaultIndex={2}>
           <TabList>
-            <Tab>Snipets</Tab>
-            <Tab>long list with search</Tab>
+            <Tab>Snippets</Tab>
+            <Tab>long list windowing by boxing</Tab>
+            <Tab>long list windowing by padding</Tab>
             <Tab>File Tree</Tab>
             <Tab>Todo</Tab>
           </TabList>
@@ -39,6 +42,12 @@ function App() {
           <TabPanel>
             <input placeholder="type regex to search" value={str} onChange={(e) => {setStr(e.target.value)}}/>
             <List items={items} />
+          </TabPanel>
+
+          <TabPanel>
+            // Interesting, it seems browser (Chrome) has a scroll top limit around 30,503,022.
+            // That causes anything greater 1016801 here not able to show.
+            <LongList {...{numRows: 1016801, rowHeight, renderRow: RowAtIndex}} />
           </TabPanel>
           
           <TabPanel>
