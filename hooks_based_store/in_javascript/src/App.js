@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { StoreProvider } from './context/StoreContext';
-import { RefreshButton } from "../../in_javascript/src/components/RefreshButton";
-import { UserList } from "../../in_javascript/src/components/UserList";
+import { RefreshButton } from "./components/RefreshButton";
+import { UserList } from "./components/UserList";
 
 export default function App() {
     return (
