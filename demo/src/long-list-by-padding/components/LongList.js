@@ -1,18 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
 
+function debounce(fn, ms) {
+    let timer; 
+    return () => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => fn.apply(null, arguments), ms);
+    }
+}
 export function LongList({numRows, rowHeight, renderRow}) {
-    const [availableHeight, setAvailableHeight] = useState(0);
     const [scrollTop, setScrollTop] = useState(0);
     const divRef = useRef(null);
+    const [clientHeight, setClientHeight] = useState(null);
     // TODO: add a REST API for fetching by page number.
     // let longList = useFetchALongList();
 
-    const clientHeight = divRef.current && divRef.current.clientHeight;
-
     useEffect(() => {
-        setAvailableHeight(clientHeight);
-    }, [clientHeight]);
+        function handleResize() {
+            setClientHeight(divRef.current && divRef.current.clientHeight);
+        }
+
+        handleResize(); // execution in first render.
+
+        const debouncedHandleResize = debounce(handleResize, 300);
+        window.addEventListener('resize', debouncedHandleResize);
+
+        return () => {
+            window.removeEventListener('resize', debouncedHandleResize);
+        }
+    }, []);
 
     const handleScroll = (event) => {
         setScrollTop(event.target.scrollTop);
@@ -20,7 +38,7 @@ export function LongList({numRows, rowHeight, renderRow}) {
 
     const totalHeight = rowHeight * numRows;
     const startIndexForScrollTop = Math.floor(scrollTop / rowHeight);
-    const rowsOnThePage = Math.ceil(availableHeight / rowHeight);
+    const rowsOnThePage = Math.ceil(clientHeight / rowHeight);
     const startIndexForNumRows = Math.max(0, numRows - rowsOnThePage);
     // Cap the start index and end index by number of rows, otherwise it'll keep scrolling,
     // and num of rows increases indefinitely, till it reaches max scroll top.
@@ -50,7 +68,7 @@ export function LongList({numRows, rowHeight, renderRow}) {
                       paddingTop: startIndex * rowHeight
                   }}
                 >
-                    <ol>{items}</ol>
+                    <ul>{items}</ul>
                 </div>
             </div>
         </div>
