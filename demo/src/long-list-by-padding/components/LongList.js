@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import './style.css';
 
 function debounce(fn, ms) {
@@ -13,11 +13,13 @@ function debounce(fn, ms) {
 export function LongList({numRows, rowHeight, renderRow}) {
     const [scrollTop, setScrollTop] = useState(0);
     const divRef = useRef(null);
-    const [clientHeight, setClientHeight] = useState(null);
+    const [clientHeight, setClientHeight] = useState(0);
     // TODO: add a REST API for fetching by page number.
     // let longList = useFetchALongList();
 
-    useEffect(() => {
+    // use useLayoutEffect to eliminate flickering.
+    // flickering is caused by: clientHeight to 0, then to divRef.current.clientHeight, when using useEffect.
+    useLayoutEffect(() => {
         function handleResize() {
             setClientHeight(divRef.current && divRef.current.clientHeight);
         }
