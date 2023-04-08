@@ -39,10 +39,10 @@ export function LongList({numRows, rowHeight, renderRow}) {
     const totalHeight = rowHeight * numRows;
     const startIndexForScrollTop = Math.floor(scrollTop / rowHeight);
     const rowsOnThePage = Math.ceil(clientHeight / rowHeight);
-    const startIndexForNumRows = Math.max(0, numRows - rowsOnThePage);
+    const maxStartIndex = Math.max(0, numRows - rowsOnThePage);
     // Cap the start index and end index by number of rows, otherwise it'll keep scrolling,
     // and num of rows increases indefinitely, till it reaches max scroll top.
-    const startIndex = Math.min(startIndexForNumRows, startIndexForScrollTop);
+    const startIndex = Math.min(maxStartIndex, startIndexForScrollTop);
     const endIndex = Math.min(numRows, startIndex + rowsOnThePage + 1);
 
     const items = [];
