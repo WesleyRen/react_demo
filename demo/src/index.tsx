@@ -1,14 +1,16 @@
 import React from "react";
 import * as ReactDOMClient from 'react-dom/client';
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import {logger} from "redux-logger";
-import thunk from "redux-thunk";
 import App from "./App";
 import {combo} from "./reducers/MyReducer";
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(combineReducers(combo), applyMiddleware(thunk, logger));
+const store = configureStore({
+    reducer: combo, 
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+});
 
 const container: HTMLElement = document.getElementById('root')!;
 
