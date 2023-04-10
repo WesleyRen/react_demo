@@ -1,4 +1,4 @@
-import { isEmailInputValid, isEmailValid } from "./emailValidation";
+import { isEmailInputValid, isEmailValid } from "../utils/emailValidation";
 
 const validEmailAddresses = [
     "AFE Dev Team <afe.dev.team@email.wal-mart.com>",
@@ -67,7 +67,6 @@ describe("DistributionList", () => {
 
     it("validates invalid email address to false", () => {
         invalidEmailAddresses.filter(input => !input.includes(",")).forEach(addr => {
-            console.log(addr);
             expect(isEmailValid(addr)).toBe(false);
         })
     });
@@ -80,7 +79,6 @@ describe("DistributionList", () => {
 
     it("Validates invalid email list to fase", () => {
         invalidEmailAddresses.forEach(input => {
-            console.log(input);
             expect(isEmailInputValid(input)).toBe(false);
         })
     });

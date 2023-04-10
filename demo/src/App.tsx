@@ -23,7 +23,7 @@ function App() {
 
   return (
       <div className="App">
-        <Tabs defaultIndex={2}>
+        <Tabs defaultIndex={5}>
           <TabList>
             <Tab>Snippets</Tab>
             <Tab>windowing by boxing</Tab>
