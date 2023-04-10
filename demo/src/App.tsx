@@ -14,6 +14,7 @@ import { Workspace } from "./file-tree/Workspace/Workspace";
 import Todo from "./todo/Todo";
 import { LongList } from "./long-list-by-padding/components/LongList";
 import { RowAtIndex, rowHeight } from "./long-list-by-padding/components/RowAtIndex";
+import { HocDemo } from "./hoc/Index";
 
 function App() {
   const dictionary: string[] = useDictionary();
@@ -29,6 +30,7 @@ function App() {
             <Tab>windowing by padding</Tab>
             <Tab>File Tree</Tab>
             <Tab>Todo</Tab>
+            <Tab>HOC</Tab>
           </TabList>
           
           <TabPanel tabIndex={0}>
@@ -58,6 +60,10 @@ function App() {
 
           <TabPanel>
             <Todo/>
+          </TabPanel>
+
+          <TabPanel>
+            <HocDemo/>
           </TabPanel>
          
         </Tabs>
