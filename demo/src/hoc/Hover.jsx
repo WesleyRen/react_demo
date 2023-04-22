@@ -1,5 +1,5 @@
 import React from "react";
-import {withCounter} from "./withCounter";
+import {withCounter} from "./withCounterHoc";
 
 function HoverkChild({counter, incrementCounter}) {
     return <p onMouseEnter={incrementCounter}>Hover counter: {counter}</p>

@@ -14,7 +14,7 @@ import { Workspace } from "./file-tree/Workspace/Workspace";
 import Todo from "./todo/Todo";
 import { LongList } from "./long-list-by-padding/components/LongList";
 import { RowAtIndex, rowHeight } from "./long-list-by-padding/components/RowAtIndex";
-import { HocDemo } from "./hoc/Index";
+import { HocDemo } from "./hoc/HocDemo";
 
 function App() {
   const dictionary: string[] = useDictionary();
