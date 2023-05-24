@@ -35,7 +35,7 @@ export function flattenJson(o) {
  * @param {*} prefix 
  * @returns 
  */
-export function flattenJson2(obj, prefix = '') {
+export function flattenObject(obj, prefix = '') {
     let flattened = {};
   
     for (let key in obj) {
@@ -43,7 +43,7 @@ export function flattenJson2(obj, prefix = '') {
         let propName = prefix ? prefix + '.' + key : key;
   
         if (typeof obj[key] === 'object' && obj[key] !== null) {
-          let nested = flattenJson2(obj[key], propName);
+          let nested = flattenObject(obj[key], propName);
           flattened = { ...flattened, ...nested };
         } else {
           flattened[propName] = obj[key];
@@ -53,5 +53,48 @@ export function flattenJson2(obj, prefix = '') {
   
     return flattened;
 }
+  
+  
+export function unflattenJson(o) {
+    if (Object(o) !== o || Array.isArray(o))
+        return o;
+    var regex = /\.?([^.\[\]]+)|\[(\d+)\]/g,
+        resultholder = {};
+    for (var p in o) {
+        var cur = resultholder,
+            prop = "",
+            m;
+        while (m = regex.exec(p)) {
+            cur = cur[prop] || (cur[prop] = (m[2] ? [] : {}));
+            prop = m[2] || m[1];
+        }
+        cur[prop] = o[p];
+    }
+    return resultholder[""] || resultholder;
+}
+
+export function unflattenObject(flatObject) {
+    const result = {};
+  
+    for (let key in flatObject) {
+      if (flatObject.hasOwnProperty(key)) {
+        const value = flatObject[key];
+        let currentObject = result;
+        const keys = key.split('.');
+  
+        for (let i = 0; i < keys.length - 1; i++) {
+          const currentKey = keys[i];
+          if (!currentObject.hasOwnProperty(currentKey)) {
+            currentObject[currentKey] = {};
+          }
+          currentObject = currentObject[currentKey];
+        }
+  
+        currentObject[keys[keys.length - 1]] = value;
+      }
+    }
+  
+    return result;
+  }
   
   

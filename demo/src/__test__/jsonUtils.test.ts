@@ -1,4 +1,4 @@
-import { flattenJson, flattenJson2 } from "../code-snippets/jsonUtils";
+import { flattenJson, flattenObject, unflattenJson, unflattenObject } from "../code-snippets/jsonUtils";
 
 const json = {
   "name": "John",
@@ -24,8 +24,39 @@ describe(flattenJson.name, () => {
   })
 })
 
-describe(flattenJson2.name, () => {
+describe(flattenObject.name, () => {
   test('flattens JSON object', () => {    
-    expect(expected).toEqual(flattenJson2(json));
+    expect(expected).toEqual(flattenObject(json));
   })
 })
+
+const flattenedObject = {
+  'user.name': 'John',
+  'user.age': 30,
+  'user.address.city': 'New York',
+  'user.address.country': 'USA'
+};
+
+const nestedObject = {
+  "user": {
+    "address": {
+      "city": "New York",
+      "country": "USA",
+    },
+    "age": 30,
+    "name": "John",
+  }
+}
+
+describe(unflattenJson.name, () => {
+  test('unflattens JSON object', () => {
+    expect(nestedObject).toEqual(unflattenJson(flattenedObject));
+  })
+})
+
+describe(unflattenObject.name, () => {
+  test('unflattens JSON object', () => {
+    expect(nestedObject).toEqual(unflattenObject(flattenedObject));
+  })
+})
+
